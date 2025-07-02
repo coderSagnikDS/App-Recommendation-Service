@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Play Review Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        button#generate-reviews {
+            background-color: #4CAF50;
+        }
+        button#generate-sentiment {
+            background-color: #007BFF;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #loading {
+            display: none;
+            margin-top: 20px;
+        }
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .review-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .review-card:hover {
+            transform: scale(1.05);
+        }
+        .review-card p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .review-card strong {
+            font-size: 16px;
+            color: #333;
+        }
+        .sentiment, .decision {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Play Review Analysis</h1>
+    <p>Enter the Google Play Store app link below:</p>
+    <input type="text" id="app-link" placeholder="Paste the Google Play Store app link here">
+    <br>
+    <button id="generate-reviews" onclick="generateReviews()">Generate Reviews</button>
+    <button id="generate-sentiment" onclick="generateSentiment()">Generate Sentiment</button>
+
+    <div id="loading">
+        <p>Loading... Please wait <img src="https://i.gifer.com/YCZH.gif" alt="Loading" width="50"></p>
+    </div>
+
+    <!-- Container to display reviews -->
+    <div id="reviews-container" class="reviews-container"></div>
+
+    <!-- Containers to display sentiment analysis results -->
+    <div id="sentiment-container" class="sentiment"></div>
+    <div id="decision-container" class="decision"></div>
+
+
+    <script>
+
+
+
+        const publicUrl = "https://259d-34-42-90-12.ngrok-free.app/";  // Update with your ngrok public URL
+
+
+
+
+        function showLoadingMessage(show) {
+            const loadingMessage = document.getElementById('loading');
+            if (show) {
+                loadingMessage.style.display = 'block';  // Show loading spinner
+            } else {
+                loadingMessage.style.display = 'none';  // Hide loading spinner
+            }
+        }
+
+        function generateReviews() {
+            const appLink = document.getElementById('app-link').value;
+            if (!appLink) {
+                alert('Please enter a valid Google Play Store app link.');
+                return;
+            }
+
+            showLoadingMessage(true);  // Show loading spinner
+
+            // Send POST request to Flask server for generating reviews
+            fetch(publicUrl + "/generate_reviews", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "url": appLink })
+            })
+            .then(response => response.json())
+            .then(data => {
+                showLoadingMessage(false);  // Hide loading spinner
+                if (data.reviews) {
+                    displayReviews(data.reviews);
+                } else if (data.error) {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => {
+                showLoadingMessage(false);  // Hide loading spinner
+                alert('Error: ' + error);
+            });
+        }
+
+        function displayReviews(reviews) {
+            const reviewsContainer = document.getElementById('reviews-container');
+            reviewsContainer.innerHTML = '';  // Clear any previous content
+
+            // Loop through the reviews and display them in cards
+            reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.classList.add('review-card');
+                reviewDiv.innerHTML = `
+                    <p><strong>${review.userName}</strong></p>
+                    <p>${review.content}</p>
+                `;
+                reviewsContainer.appendChild(reviewDiv);
+            });
+        }
+
+        function generateSentiment() {
+            const appLink = document.getElementById('app-link').value;
+            if (!appLink) {
+                alert('Please enter a valid Google Play Store app link.');
+                return;
+            }
+
+            showLoadingMessage(true);  // Show loading spinner
+
+            // Send POST request to Flask server for sentiment analysis
+            fetch(publicUrl + "/generate_sentiment", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "url": appLink })
+            })
+            .then(response => response.json())
+            .then(data => {
+                showLoadingMessage(false);  // Hide loading spinner
+                if (data.decision) {
+                    displaySentiment(data.decision, data.positive_percentage, data.negative_percentage);
+                } else if (data.error) {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => {
+                showLoadingMessage(false);  // Hide loading spinner
+                alert('Error: ' + error);
+            });
+        }
+
+        function displaySentiment(decision, positive, negative) {
+            const sentimentContainer = document.getElementById('sentiment-container');
+            const decisionContainer = document.getElementById('decision-container');
+            
+            sentimentContainer.innerHTML = `
+                <p class="sentiment"><strong>Positive Sentiment:</strong> ${positive.toFixed(2)}%</p>
+                <p class="sentiment"><strong>Negative Sentiment:</strong> ${negative.toFixed(2)}%</p>
+            `;
+            decisionContainer.innerHTML = `<p class="decision">${decision}</p>`;
+        }
+    </script>
+</body>
+</html>
