@@ -1,0 +1,33 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Environment
+.env
+venv/
+ENV/
+env/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# MacOS and system files
+.DS_Store
+Thumbs.db
+
+# Pyngrok config (optional, if token is saved locally)
+*.ngrok2
+
+# Flask logs
+*.log
+
+# Node/Frontend artifacts (if using npm in future)
+node_modules/
+
+# Other
+*.sqlite3
