@@ -47,7 +47,7 @@ python app.ipynb
 ```
 
 Your app will start at http://localhost:5000 and also provide a public ngrok URL.
-Copy the public URL and paste it in Line 100 in my html code
+Copy the public URL and paste it in Line 100 of the html code
 (Update in progress to fix this)
 
 ---
