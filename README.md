@@ -46,7 +46,8 @@ ngrok.set_auth_token("your_token_here")
 python app.ipynb
 ```
 Your app will start at http://localhost:5000 and also provide a public ngrok URL.
-
+Copy the public URL and paste it in Line 100 in my html code
+(Update in progress to fix this)
 ---
 
 ## 📈 How It Works
