@@ -4,11 +4,11 @@ A web-based application that fetches real user reviews from any Google Play Stor
 
 ## 🚀 Features
 
-- 🔍 Extracts recent reviews from a Google Play Store app.
-- 🤖 Analyzes sentiments (positive/negative) using `siebert/sentiment-roberta-large-english`.
-- 📊 Calculates sentiment distribution and makes download-worthiness recommendations.
-- 🌐 Clean, responsive frontend (HTML + JS).
-- ⚙️ Backend powered by Flask and exposed using Ngrok.
+- Extracts recent reviews from a Google Play Store app.
+- Analyzes sentiments (positive/negative) using `siebert/sentiment-roberta-large-english`.
+- Calculates sentiment distribution and makes download-worthiness recommendations.
+- Clean, responsive frontend (HTML + JS).
+- Backend powered by Flask and exposed using Ngrok.
 
 ---
 
