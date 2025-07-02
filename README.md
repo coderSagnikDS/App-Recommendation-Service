@@ -1,8 +1,8 @@
-# 📱 Google Play Review Sentiment Analyzer
+# Google Play Review Sentiment Analyzer
 
 A web-based application that fetches real user reviews from any Google Play Store app and analyzes them using a transformer-based sentiment analysis model from Hugging Face.
 
-## 🚀 Features
+## Features
 
 - Extracts recent reviews from a Google Play Store app.
 - Analyzes sentiments (positive/negative) using `siebert/sentiment-roberta-large-english`.
@@ -12,7 +12,7 @@ A web-based application that fetches real user reviews from any Google Play Stor
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Python (Flask)
@@ -22,7 +22,7 @@ A web-based application that fetches real user reviews from any Google Play Stor
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### 1. Clone the repository
 ```bash
