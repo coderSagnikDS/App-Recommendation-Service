@@ -49,7 +49,7 @@ ngrok.set_auth_token("your_token_here")
 ```
 ### 4. Run the Flask app
 ```bash
-python app.py
+python app.ipynb
 ```
 Your app will start at http://localhost:5000 and also provide a public ngrok URL.
 
