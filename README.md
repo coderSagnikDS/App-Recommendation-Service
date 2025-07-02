@@ -12,12 +12,6 @@ A web-based application that fetches real user reviews from any Google Play Stor
 
 ---
 
-## 📸 Screenshot
-
-![App Screenshot](https://i.imgur.com/your-screenshot-placeholder.png) <!-- optional -->
-
----
-
 ## 🛠 Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript
@@ -32,7 +26,7 @@ A web-based application that fetches real user reviews from any Google Play Stor
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/google-play-sentiment-analyzer.git
+git clone https://github.com/coderSagnikDS/google-play-app-review-sentiment-analyser.git
 cd google-play-sentiment-analyzer
 ```
 ### 2. Set up Python environment
