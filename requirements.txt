@@ -1,0 +1,7 @@
+flask
+flask-ngrok
+flask-cors
+transformers
+google-play-scraper
+pyngrok
+pandas
