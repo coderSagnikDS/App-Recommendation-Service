@@ -1,4 +1,4 @@
-# Google Play Review Sentiment Analyzer
+# App Recommendation Web App
 
 A web-based application that fetches real user reviews from any Google Play Store app and analyzes them using a transformer-based sentiment analysis model from Hugging Face.
 
