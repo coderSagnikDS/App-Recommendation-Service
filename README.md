@@ -1,4 +1,4 @@
-# App Recommendation Web App
+# App Recommendation Service
 
 A web-based application that fetches real user reviews from any Google Play Store app and analyzes them using a transformer-based sentiment analysis model from Hugging Face.
 
